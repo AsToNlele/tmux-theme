@@ -7,9 +7,10 @@ main() {
   gray='#454158'
   dark='#22212C'
   purple='#C6A6F7'
-  green='#8cf67a'
-  red='#FF9580'
+  green='#57E888'
+  red='#EB6A66'
   yellow='#FFFF80'
+  lightgray='#5A688B'
 
   tmux set-option -g status-interval 5000
 
@@ -20,7 +21,7 @@ main() {
 
   tmux set-option -g status-style "bg=${gray},fg=${white}"
 
-  tmux set-option -g status-left "#[bg=${green},fg=${dark}] #S "
+  tmux set-option -g status-left "#[bg=${green},fg=${dark}, bold] #S #[bg=${lightgray},fg=${white}]  #(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD) "
   tmux set-option -g status-right ""
   tmux set-option -g status-left-length 100
   tmux set-option -g status-right-length 100
@@ -29,5 +30,7 @@ main() {
   tmux set-window-option -g window-status-current-format "#[fg=${white},bg=${purple}] #I #W "
   tmux set-window-option -g window-status-format "#[fg=${white}]#[bg=${gray}] #I #W "
   tmux set-window-option -g window-status-activity-style "bold"
+  
+  tmux set -g status-interval 1
 }
 main
