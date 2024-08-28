@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 export LC_ALL=en_US.UTF-8
 
+current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 main() {
   
   white='#F8F8F2'
@@ -11,6 +13,8 @@ main() {
   red='#EB6A66'
   yellow='#FFFF80'
   lightgray='#5A688B'
+  pink='#EA8AC4'
+  blue='#92DEEE'
 
   tmux set-option -g status-interval 5000
 
@@ -22,7 +26,7 @@ main() {
   tmux set-option -g status-style "bg=${gray},fg=${white}"
 
   tmux set-option -g status-left "#[bg=${green},fg=${dark}, bold] #S #[bg=${lightgray},fg=${white}]  #(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD) "
-  tmux set-option -g status-right ""
+  tmux set-option -g status-right "#[fg=${white},bg=${pink},nobold,nounderscore,noitalics] #($current_dir/battery.sh) #[fg=${dark},bg=${yellow},bold,nounderscore,noitalics] #($current_dir/datetime.sh) "
   tmux set-option -g status-left-length 100
   tmux set-option -g status-right-length 100
   
